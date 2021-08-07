@@ -1,0 +1,62 @@
+{% extends 'mainlayout.html' %}
+{% block title%} Searched item {% endblock title %}
+
+{% block body %}
+
+{% load static %}
+
+<div container>
+
+<main>
+
+{% for info in items %}
+  {% if item_name|lower  == info.name|lower %}
+
+    <div class="album py-5 bg-light">
+      <div class="container">
+        <div class="g-3" style="width:60%;">
+          <div class="col">
+            <div class="card shadow-sm">
+              <img src="/media/{{info.image}}" class="d-block w-100" alt="...">
+              <div class="card-body">
+                <p class="card-text">𝐈𝐭𝐞𝐦: {{info.name}} ({{info.flavour}})</p>
+                <p class="text">𝐏𝐫𝐢𝐜𝐞: {{info.price}}₹</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <form method="post" action="/buy">
+                      {% csrf_token %}
+                      <input hidden type="text" name="item_id" value="{{info.id}}">
+                      <input hidden type="text" name="item_name" value="{{info.name}}">
+                      <input hidden type="text" name="item_price" value="{{info.price}}">
+                      <input type="submit" class="btn btn-primary" style="font-size: 13px; width: 66px;" value="Buy">
+                      </form>
+
+                      <form method="post" action="/">
+                      {% csrf_token %}
+                      <input hidden type="text" name="item_id" value="{{info.id}}">
+                      <input type="submit" class="btn btn-sm btn-outline-secondary" style="margin-left:18px;" value="Add to wishlist">
+                      </form>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  {% endif %}
+
+{% endfor %}
+
+<footer class="text-muted py-5">
+  <div class="container">
+    <p class="float-end mb-1">
+      <a href="#">Back to top</a>
+    </p>
+</footer>
+
+</div>
+
+{% endblock body %}

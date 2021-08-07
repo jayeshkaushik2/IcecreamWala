@@ -1,0 +1,15 @@
+{% extends 'mainlayout.html' %}
+{% block title%} {{username}} ({{fullname}}) {% endblock title %}
+
+{% block body %}
+{% load static %}
+
+<div class="container" >
+    <img src="{% static 'img/bg.jpg' %}" class="d-block w-100" alt="...">
+    <img class="link" border="1.5" style="border-color:white; border-radius: 50%; margin-top:-308px; margin-left:24px;"
+    alt width="200" height="200" src="{% static 'img/ice1.jpg' %}">
+    <h1 style="margin-top:-184px; margin-left:255px; color:white; font-size:24px;">{{fullname}}</h1>
+    <p style="margin-top:-9px; margin-left:255px; color:white; font-size:19px;">{{username}}</p>
+    <button type="button" style="margin-top:29px; margin-left:1006px; font-size:15px; padding:8px;" class="btn btn-primary">Edit profile</button>
+</div>
+{% endblock body %}

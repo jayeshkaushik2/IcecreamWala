@@ -1,0 +1,73 @@
+{% extends 'mainlayout.html' %}
+{% block title%} Your address {% endblock title %}
+
+{% block body %} 
+<div class="container">
+    <form method='post' action='/save_address'>
+    {% csrf_token %}
+        <div  style="margin-left:321px;">
+            <h1 class="h3 mb-4 my-4 font-weight-normal" style="width: 250px;">Add your Address</h1>
+
+            <label for="country">𝗖𝗼𝘂𝗻𝘁𝗿𝘆/𝗥𝗲𝗴𝗶𝗼𝗻</label>
+            <select class="form-select form-select-sm" style="width: 400px;" id="country" name="country" aria-label=".form-select-sm example">
+            <option value="india">India</option>
+            <option value="america">America</option>
+            <option value="canada">Canada</option>
+            </select>
+
+            <div class="mb-3">
+            <label for="fullname">𝗙𝘂𝗹𝗹 𝗻𝗮𝗺𝗲(𝗙𝗶𝗿𝘀𝘁 𝗻𝗮𝗺𝗲 𝗮𝗻𝗱 𝗟𝗮𝘀𝘁 𝗻𝗮𝗺𝗲)</label>
+            <input type="text" id="fullname" name="fullname" style="width: 400px; padding:3px;" class="form-control" placeholder="Full name" required autofocus>
+            </div>
+
+            <div class="mb-3">
+            <label for="mobilenumber">𝗠𝗼𝗯𝗶𝗹𝗲 𝗻𝘂𝗺𝗯𝗲𝗿</label>
+            <input type="phone" id="mobilenumber" name="mobilenumber" style="width: 400px; padding:3px;" class="form-control" placeholder="10-digits mobile number without prefixes" required autofocus>
+            <p style="width: 250px; font-size: 12px; ">May be used to assist delivery</p>
+            </div>
+
+            <div class="mb-3">
+            <label for="pincode">𝗣𝗜𝗡 𝗰𝗼𝗱𝗲</label>
+            <input type="text" id="pincode" name="pincode" style="width: 400px; padding:3px;" class="form-control" placeholder="6 digits [0-9] PIN code" required>
+            </div>
+
+            <div class="mb-3">
+            <label for="home_address">𝗙𝗹𝗮𝘁, 𝗛𝗼𝘂𝘀𝗲 𝗻𝗼., 𝗕𝘂𝗶𝗹𝗱𝗶𝗻𝗴, 𝗖𝗼𝗺𝗽𝗮𝗻𝘆, 𝗔𝗽𝗮𝗿𝘁𝗺𝗲𝗻𝘁</label>
+            <input type="text" id="home_address" style="width: 400px; padding:3px;" name="home_address" class="form-control" placeholder="Home Address" required>
+            </div>
+
+            
+
+            <div class="mb-3">
+            <label for="village">𝗔𝗿𝗲𝗮, 𝗖𝗼𝗹𝗼𝗻𝘆, 𝗦𝘁𝗿𝗲𝗲𝘁, 𝗦𝗲𝗰𝘁𝗼𝗿, 𝗩𝗶𝗹𝗹𝗮𝗴𝗲</label>
+            <input type="text" id="village" style="width: 400px; padding:3px;" name="village" class="form-control" placeholder="Area/ Village/ Street/ Sector/ Colony" required>
+            </div>
+
+            <div class="mb-3">
+            <label for="">𝗟𝗮𝗻𝗱𝗺𝗮𝗿𝗸</label>
+            <input type="text" id="landmark" style="width: 400px; padding:3px;" name="landmark" class="form-control" placeholder="E.g.Near by School etc." required>
+            </div>
+            
+
+            <div class="mb-3">
+            <label for="town_city">𝗧𝗼𝘄𝗻/𝗖𝗶𝘁𝘆</label>
+            <input type="text" id="town_city" name="town_city" style="width: 400px; padding:3px;" class="form-control" placeholder="" required>
+            </div>
+
+            <label for="state">𝗦𝘁𝗮𝘁𝗲 / 𝗣𝗿𝗼𝘃𝗶𝗻𝗰𝗲 / 𝗥𝗲𝗴𝗶𝗼𝗻</label>
+            <select class="form-select form-select-sm" id="state" name="state" style="width: 400px; margin-bottom: 27px;" aria-label=".form-select-sm example">
+            <option value="delhi">Delhi</option>
+            <option value="mumbai">Mumbai</option>
+            <option value="kernatek">Kernatek</option>
+            </select>
+
+            <input value="{{id}}" name="item_id" id="id" hidden type="text">
+            <input value="{{name}}" name="item_name" id="name" hidden type="text">
+            <input value="{{price}}" name="item_price" id="price" hidden type="text">
+
+            <button class="btn btn-lg btn-primary btn-block my-1 mb-3" type="submit" style="font-size:15px;">Submit Address</button>
+        </div>
+    </form>
+
+</div>
+{% endblock body %}
