@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.fields import CharField
 
 # Create your models here.
 
@@ -6,6 +7,7 @@ from django.db import models
 class Contact(models.Model):
     name = models.CharField(max_length=120)
     email = models.CharField(max_length=70)
+    # this password CharField has to change
     password = models.CharField(max_length=20)
     massage = models.TextField()
     date = models.DateField()
@@ -19,6 +21,7 @@ class Search(models.Model):
         return self.icecream_name
 
 class Icecream_item(models.Model):
+    # anyone can add the icecream item[who is superuser to the admin] have to change this
     name = models.CharField(max_length=200)
     price = models.IntegerField()
     flavour = models.CharField(max_length=50)
@@ -37,11 +40,13 @@ class Items(models.Model):
         return self.name
 
 class Bought_items(models.Model):
+    # here a user foreign key should be used have to implement this
     item = models.ForeignKey(Items, on_delete=models.CASCADE)
 
 
 
 class Address(models.Model):
+    # who bought this user foreign key have to impelement this
     item_id = models.ForeignKey(Bought_items, default=True, on_delete=models.DO_NOTHING)
     username = models.CharField(max_length=120)
     email = models.CharField(max_length=120)
@@ -58,3 +63,4 @@ class Address(models.Model):
 
     def __str__(self):
         return self.fullname
+

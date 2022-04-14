@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 # Create your views here.
 
 def home(request):
+    print(User.objects.all())
     login_is = False
     if request.user.is_authenticated:
         login_is = True
@@ -156,10 +157,10 @@ def signup(request):
             return redirect('/signup')
 
         else:
-            user = User.objects.create_user(username=username, first_name=firstname, last_name=lastname, 
-             email=email, password=password)
-            user.save()
-            login(request, user)
+            user_profile = User_profile(first_name=firstname, last_name=lastname, username=username, email=email, password=password, logged_in=logged_in)
+            # user = User.objects.create_user(username=username, first_name=firstname, last_name=lastname, email=email, password=password)
+            user_profile.save()
+            # login(request, user)
             return redirect('/')
 
     if request.user.is_authenticated:
